@@ -41,7 +41,7 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 20px;
             position: relative;
@@ -448,6 +448,13 @@
             to { opacity: 1; }
         }
 
+        /* Адаптация для компьютеров */
+        @media (min-width: 769px) {
+            .container {
+                max-width: 33vw;
+            }
+        }
+
         /* Мобильная адаптация */
         @media (max-width: 480px) {
             .title {
@@ -533,7 +540,7 @@
             <div class="joke-card">
                 <div class="joke-image-container">
                     <img class="joke-image"
-                         src="igor.jpg"
+                         src="igor2.png"
                     <div class="image-overlay"></div>
                 </div>
                 <div class="coupon-wrapper">
@@ -544,7 +551,7 @@
                             <span>🎫</span>
                         </div>
                         <p class="coupon-text">на <strong>1 тупую шутку</strong> от Игоря</p>
-                        <p class="coupon-footer">* срок действия не ограничен, увы</p>
+                        <p class="coupon-footer">* увы, срок действия не ограничен</p>
                     </div>
                 </div>
             </div>
