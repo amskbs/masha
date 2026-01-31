@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маша, с Днём Рождения! (почти вовремя)</title>
+
+    <!--
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║  🎂 ИНСТРУКЦИЯ ПО ЗАМЕНЕ КАРТИНОК                            ║
+    ╠═══════════════════════════════════════════════════════════════╣
+    ║  1. Найдите нужную картинку по комментарию                   ║
+    ║     (например: КАРТИНКА 1: Забывчивость)                     ║
+    ║  2. Замените URL в атрибуте src="..."                        ║
+    ║  3. Сохраните файл и обновите страницу                       ║
+    ╚═══════════════════════════════════════════════════════════════╝
+    -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #fef9f3;
+            min-height: 100vh;
+            color: #4a4a4a;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Фоновые декоративные элементы */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(201, 168, 124, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(232, 180, 184, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(201, 168, 124, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Плавающие декоративные элементы */
+        .floating-decor {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0.15;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .decor-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .decor-2 { top: 30%; right: 8%; animation-delay: 1s; }
+        .decor-3 { top: 55%; left: 3%; animation-delay: 2s; }
+        .decor-4 { top: 75%; right: 5%; animation-delay: 3s; }
+        .decor-5 { top: 90%; left: 10%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        /* Заголовок */
+        header {
+            text-align: center;
+            padding: 50px 20px 40px;
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+        }
+
+        .header-decor {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            opacity: 0.1;
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #c9a87c;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .title::after {
+            content: '✨';
+            position: absolute;
+            right: -30px;
+            top: -10px;
+            font-size: 1.5rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #8b7355;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .header-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c9a87c, transparent);
+            margin: 0 auto 15px;
+        }
+
+        .wolf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #f5ebe0, #faf6f0);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #8b7355;
+            box-shadow: 0 2px 15px rgba(201, 168, 124, 0.2);
+            border: 1px solid rgba(201, 168, 124, 0.3);
+        }
+
+        .wolf-badge span {
+            font-size: 1.3rem;
+        }
+
+        /* Карточки с шутками */
+        .joke-card {
+            background: white;
+            border-radius: 24px;
+            margin: 30px 0;
+            overflow: hidden;
+            box-shadow:
+                0 4px 20px rgba(201, 168, 124, 0.15),
+                0 1px 3px rgba(0,0,0,0.05);
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            position: relative;
+            border: 1px solid rgba(201, 168, 124, 0.1);
+        }
+
+        .joke-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a87c, #e8b4b8, #c9a87c);
+        }
+
+        .joke-card:nth-child(1) { animation-delay: 0.1s; }
+        .joke-card:nth-child(2) { animation-delay: 0.15s; }
+        .joke-card:nth-child(3) { animation-delay: 0.2s; }
+        .joke-card:nth-child(4) { animation-delay: 0.25s; }
+        .joke-card:nth-child(5) { animation-delay: 0.3s; }
+        .joke-card:nth-child(6) { animation-delay: 0.35s; }
+        .joke-card:nth-child(7) { animation-delay: 0.4s; }
+        .joke-card:nth-child(8) { animation-delay: 0.45s; }
+        .joke-card:nth-child(9) { animation-delay: 0.5s; }
+
+        .joke-card.wolf-card::before {
+            background: linear-gradient(90deg, #5a5a5a, #8b7355, #5a5a5a);
+        }
+
+        .joke-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .joke-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .joke-card:hover .joke-image {
+            transform: scale(1.03);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(transparent, rgba(255,255,255,0.9));
+        }
+
+        .joke-text {
+            padding: 28px 25px;
+            font-size: 1.15rem;
+            text-align: center;
+            font-weight: 400;
+            color: #5a5a5a;
+            line-height: 1.7;
+            background: linear-gradient(180deg, #fff, #fefcfa);
+        }
+
+        .joke-text strong {
+            color: #c9a87c;
+            font-weight: 600;
+        }
+
+        .joke-text em {
+            color: #8b7355;
+        }
+
+        /* Волчья карточка */
+        .wolf-quote-box {
+            background: linear-gradient(135deg, #f8f5f0, #f5ebe0);
+            margin: 15px 20px 25px;
+            padding: 20px 25px;
+            border-radius: 16px;
+            border-left: 4px solid #5a5a5a;
+            position: relative;
+        }
+
+        .wolf-quote-box::before {
+            content: '🐺';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 1.5rem;
+            background: #f8f5f0;
+            padding: 0 8px;
+        }
+
+        .wolf-quote-box p {
+            font-style: italic;
+            color: #5a5a5a;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        /* Специальные стили для купона */
+        .coupon-wrapper {
+            padding: 20px;
+            background: linear-gradient(180deg, #fff, #fffbf5);
+        }
+
+        .coupon {
+            background: linear-gradient(135deg, #fffdf5, #fff9e6);
+            border: 3px dashed #c9a87c;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coupon::before,
+        .coupon::after {
+            content: '✂️';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .coupon::before { left: -5px; }
+        .coupon::after { right: -5px; transform: translateY(-50%) scaleX(-1); }
+
+        .coupon-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .coupon-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8b6914;
+            letter-spacing: 3px;
+        }
+
+        .coupon-text {
+            font-size: 1.1rem;
+            color: #5a5a5a;
+        }
+
+        .coupon-footer {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* Стиль для даты */
+        .date-card {
+            text-align: center;
+            padding: 35px 25px;
+            background: linear-gradient(180deg, #fff, #fefcfa);
+        }
+
+        .date-kz {
+            font-size: 1.3rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .date-main {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: #c9a87c;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .date-question {
+            font-size: 1.1rem;
+            color: #bbb;
+            font-style: italic;
+        }
+
+        .wink {
+            display: inline-block;
+            animation: wink 3s ease-in-out infinite;
+        }
+
+        @keyframes wink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        /* Подпись */
+        footer {
+            text-align: center;
+            padding: 50px 20px 60px;
+            animation: fadeIn 1s ease-out 0.8s both;
+            position: relative;
+        }
+
+        .footer-decor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .footer-line {
+            width: 50px;
+            height: 1px;
+            background: #c9a87c;
+        }
+
+        .footer-wolf {
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #c9a87c;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .names {
+            font-size: 1.1rem;
+            color: #8b7355;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .names .separator {
+            color: #d4c4b0;
+        }
+
+        .heart {
+            color: #e8b4b8;
+            font-size: 1.3rem;
+            animation: pulse 2s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .final-message {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f5f0, #faf6f0);
+            border-radius: 16px;
+            font-size: 0.95rem;
+            color: #8b7355;
+            font-style: italic;
+            border: 1px solid rgba(201, 168, 124, 0.2);
+        }
+
+        /* Анимации */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.2rem;
+            }
+
+            .title::after {
+                right: -5px;
+                font-size: 1rem;
+            }
+
+            .joke-text {
+                font-size: 1.05rem;
+                padding: 22px 20px;
+            }
+
+            .joke-image {
+                height: 180px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .floating-decor {
+                display: none;
+            }
+
+            .coupon-title {
+                font-size: 1.3rem;
+            }
+
+            .date-main {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Плавающий декор -->
+    <div class="floating-decor decor-1">🎂</div>
+    <div class="floating-decor decor-2">🎁</div>
+    <div class="floating-decor decor-3">🐺</div>
+    <div class="floating-decor decor-4">✨</div>
+    <div class="floating-decor decor-5">🎈</div>
+
+    <div class="container">
+
+        <header>
+            <div class="header-decor">🎂</div>
+            <h1 class="title">Маша, с Днём Рождения!</h1>
+            <div class="header-line"></div>
+            <p class="subtitle">лучше поздно, чем с пустыми руками</p>
+            <div class="wolf-badge">
+                <span>🐺</span>
+                Стая поздравляет
+            </div>
+        </header>
+
+        <main>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 КАРТИНКА 1: Забывчивость / "мы не забыли"
+                 Тема: календарь, заметки, напоминания
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="joke-card">
+                <div class="joke-image-container">
+                    <img class="joke-image"
+                         src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&h=500&fit=crop"
+                         alt="Календарь с заметками">
+                    <div class="image-overlay"></div>
+                </div>
+                <p class="joke-text">
+                    Мы не забыли твой день рождения.<br>
+                    Мы дали тебе <strong>соскучиться</strong> по нашему юмору.
+                </p>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 КАРТИНКА 2: Наглость / "извинись"
+                 Тема: самоуверенный кот, надменный взгляд
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="joke-card">
+                <div class="joke-image-container">
+                    <img class="joke-image"
+                         src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&h=500&fit=crop"
+                         alt="Надменный кот">
+                    <div class="image-overlay"></div>
+                </div>
+                <p class="joke-text">
+                    Да, Маша, мы опоздали.<br>
+                    <strong>Извинись.</strong>
+                </p>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 КАРТИНКА 3: Купон / лотерея
+                 Тема: лотерейный билет, приз
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="joke-card">
+                <div class="joke-image-container">
+                    <img class="joke-image"
+                         src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=500&fit=crop"
+                         alt="Рукопожатие - сделка">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="coupon-wrapper">
+                    <div class="coupon">
+                        <div class="coupon-header">
+                            <span>🎫</span>
+                            <span class="coupon-title">КУПОН</span>
+                            <span>🎫</span>
+                        </div>
+                        <p class="coupon-text">на <strong>1 тупую шутку</strong> от Игоря</p>
+                        <p class="coupon-footer">* срок действия не ограничен, увы</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 КАРТИНКА 4: Волк с добычей
+                 Тема: волк с мясом в пасти, охота
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="joke-card wolf-card">
+                <div class="joke-image-container">
+                    <img class="joke-image"
+                         src="https://images.unsplash.com/photo-1615812214207-34e3be6812df?w=800&h=500&fit=crop"
+                         alt="Волк на охоте">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="wolf-quote-box">
+                    <p>
+                        Волки не ищут оправданий.<br>
+                        <strong>Волки приносят добычу.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 КАРТИНКА 5: Дружба / подарок
+                 Тема: подарок, посылка, упаковка
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="joke-card">
+                <div class="joke-image-container">
+                    <img class="joke-image"
+                         src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=800&h=500&fit=crop"
+                         alt="Подарок в красивой упаковке">
+                    <div class="image-overlay"></div>
+                </div>
+                <p class="joke-text">
+                    Настоящий друг не тот, кто помнит дату.<br>
+                    Настоящий друг тот, кто <strong>не боится</strong> отправить подарок спустя месяц.
+                </p>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 КАРТИНКА 6: Опоздание / вечность
+                 Тема: часы, время
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="joke-card">
+                <div class="joke-image-container">
+                    <img class="joke-image"
+                         src="https://images.unsplash.com/photo-1501139083538-0139583c060f?w=800&h=500&fit=crop"
+                         alt="Часы">
+                    <div class="image-overlay"></div>
+                </div>
+                <p class="joke-text">
+                    Брат не тот, кто вовремя, а тот, кто вечно.<br>
+                    <em>Мы вечно опаздываем.</em>
+                </p>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 КАРТИНКА 7: Гордый волк
+                 Тема: величественный волк, альфа
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="joke-card wolf-card">
+                <div class="joke-image-container">
+                    <img class="joke-image"
+                         src="https://images.unsplash.com/photo-1564466809058-bf4114d55352?w=800&h=500&fit=crop"
+                         alt="Гордый волк">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="wolf-quote-box">
+                    <p>
+                        Волки не извиняются.<br>
+                        А ты — <strong>извинись</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 КАРТИНКА 8: Москва / бюрократия
+                 Тема: Москва, Кремль, официальные документы
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="joke-card">
+                <div class="joke-image-container">
+                    <img class="joke-image"
+                         src="https://images.unsplash.com/photo-1513326738677-b964603b136d?w=800&h=500&fit=crop"
+                         alt="Москва">
+                    <div class="image-overlay"></div>
+                </div>
+                <p class="joke-text">
+                    Мы согласовывали подарок для <strong>Марии из Москвы</strong><br>
+                    с мэрией Москвы.
+                </p>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 КАРТИНКА 9: Дата / намёк
+                 Тема: торт, свечи, день рождения
+            ═══════════════════════════════════════════════════════════ -->
+            <div class="joke-card">
+                <div class="joke-image-container">
+                    <img class="joke-image"
+                         src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=800&h=500&fit=crop"
+                         alt="Праздничный торт">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="date-card">
+                    <p class="date-kz">күні</p>
+                    <p class="date-main">15.01.2026</p>
+                    <p class="date-question">(был? <span class="wink">😏</span>)</p>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <div class="footer-decor">
+                <div class="footer-line"></div>
+                <div class="footer-wolf">🐺</div>
+                <div class="footer-line"></div>
+            </div>
+            <p class="signature">С любовью и опозданием,</p>
+            <p class="names">
+                Артём <span class="separator">•</span>
+                Даша <span class="separator">•</span>
+                Даня
+                <span class="heart">♥</span>
+            </p>
+            <div class="final-message">
+                P.S. Волки всегда возвращаются. Иногда просто чуть позже 🐺
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
